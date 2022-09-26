@@ -1,0 +1,179 @@
+mongodb
+how to forget password :
+go to mongodb homepage 
+click on database - (see right side) action-edit-edit password - then you can change it.
+
+pip install pymongo
+pip install "pymongo[srv]"
+
+
+
+import pymongo
+client = pymongo.MongoClient("mongodb+srv://chouhanbanti2544:Banti11@cluster0.tdfpa.mongodb.net/?retryWrites=true&w=majority")
+db = client.test
+data = {
+    "name" : "sudhanshu",
+    "mail_id" : "sudhanshu@ineuron.ai",
+    "subject" : ["data scinence","big data","data analytics"]
+}
+
+database = client['myinfo']
+collection = database["sudh"]
+collection.insert_one(data)
+
+
+import pymongo
+client = pymongo.MongoClient("mongodb+srv://chouhanbanti2544:Banti11@cluster0.tdfpa.mongodb.net/?retryWrites=true&w=majority")
+db = client.test
+data = {
+    "name" : "sudhanshu",
+    "mail_id" : "sudhanshu@ineuron.ai",
+    "subject" : ["data scinence","big data","data analytics"]
+}
+list_of_records = [
+    {'companyName': 'iNeuron',
+     'product': 'Affordable AI',
+     'courseOffered': 'Machine Learning with Deployment'},
+
+    {'companyName': 'iNeuron',
+     'product': 'Affordable AI',
+     'courseOffered': 'Deep Learning for NLP and Computer vision'},
+
+    {'companyName': 'iNeuron',
+     'product': 'Master Program',
+     'courseOffered': 'Data Science Masters Program'}
+]
+
+
+database = client['myinfo']
+collection = database["sudh"]
+##collection.insert_one(data)
+collection.insert_many(list_of_records)
+
+
+
+
+find where companyName" is "iNeuron":
+
+import pymongo
+client = pymongo.MongoClient("mongodb+srv://chouhanbanti2544:Banti11@cluster0.tdfpa.mongodb.net/?retryWrites=true&w=majority")
+db = client.test
+
+database = client['myinfo']
+collection = database["sudh"]
+
+#record = collection.find()
+#for i in record:
+#    print(i)
+
+data = collection.find({"companyName" : "iNeuron"})
+for i in data:
+    print(i)
+
+
+
+
+import pymongo
+data =  [
+        {
+            "item": "canvas",
+            "qty": 100,
+            "size": {"h": 28, "w": 35.5, "uom": "cm"},
+            "status": "A",
+        },
+        {
+            "item": "journal",
+            "qty": 25,
+            "size": {"h": 14, "w": 21, "uom": "cm"},
+            "status": "A",
+        },
+        {
+            "item": "mat",
+            "qty": 85,
+            "size": {"h": 27.9, "w": 35.5, "uom": "cm"},
+            "status": "A",
+        },
+        {
+            "item": "mousepad",
+            "qty": 25,
+            "size": {"h": 19, "w": 22.85, "uom": "cm"},
+            "status": "P",
+        },
+        {
+            "item": "notebook",
+            "qty": 50,
+            "size": {"h": 8.5, "w": 11, "uom": "in"},
+            "status": "P",
+        },
+        {
+            "item": "paper",
+            "qty": 100,
+            "size": {"h": 8.5, "w": 11, "uom": "in"},
+            "status": "D",
+        },
+        {
+            "item": "planner",
+            "qty": 75,
+            "size": {"h": 22.85, "w": 30, "uom": "cm"},
+            "status": "D",
+        },
+        {
+            "item": "postcard",
+            "qty": 45,
+            "size": {"h": 10, "w": 15.25, "uom": "cm"},
+            "status": "A",
+        },
+        {
+            "item": "sketchbook",
+            "qty": 80,
+            "size": {"h": 14, "w": 21, "uom": "cm"},
+            "status": "A",
+        },
+        {
+            "item": "sketch pad",
+            "qty": 95,
+            "size": {"h": 22.85, "w": 30.5, "uom": "cm"},
+            "status": "A",
+        },
+    ]
+
+client = pymongo.MongoClient("mongodb+srv://chouhanbanti2544:Banti11@cluster0.tdfpa.mongodb.net/?retryWrites=true&w=majority")
+db = client.test
+database = client['inventory']
+collection = database["table"]
+#collection.insert_many(data)
+
+#d = collection.find()
+#for i in d:
+#    print(i)
+
+###finding those data where status is A
+
+#d = collection.find({"status" : "A"})
+#for i in d:
+# print(i)
+
+#finding those data where status is A either D
+#d = collection.find({"status" :{'$in':['A' ,'P']}})
+#for i in d :
+#   print((i))
+
+#find the value of status where status is greter than
+#d = collection.find({"status":{"$gt" : "C"}})
+#for i in d:
+#    print(i)
+
+#find the value qty where the qty = 100
+#d= collection.find({"qty": 100})
+#for i in d:
+#    print(i)
+
+#find the value of qty where the qty is greate than and equal to  75 (gte)?
+#d = collection.find({"qty" :{'$gte':75}})
+#for i in d:
+#    print(i)
+
+#find the details where item should be sketch pad and qty should be 95
+d = collection.find({"item":"sketch pad","qty":95})
+for i in d:
+    print(i)
